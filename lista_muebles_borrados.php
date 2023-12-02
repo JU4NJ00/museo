@@ -77,7 +77,7 @@ include('header.php');
                         <th scope="col">Designacion</th>
                         <th scope="col">Modo de Adquisicion</th>
                         <th scope="col">Nombre de Donante</th>
-                        <th scope="col">Fecha de Ingreso</th>
+                        <th scope="col">DNI del responsable de la eliminacion</th>
                         <?php if (isset($_SESSION['dniadmin']) || isset($_SESSION['dniencargado'])) : ?>
                             <th scope="col">Acciones</th>
                         <?php endif; ?>
@@ -93,7 +93,7 @@ include('header.php');
                                 <td><?php echo $fila["designacion"]; ?></td>
                                 <td><?php echo $fila["modoadquisicion"]; ?></td>
                                 <td><?php echo $fila["nomdonante"]; ?></td>
-                                <td><?php echo $fila["fechaing"]; ?></td>
+                                <td><?php echo $fila["id_borrar"]; ?></td>
                                 <?php if (isset($_SESSION['dniadmin']) || isset($_SESSION['dniencargado'])) :
                                     include("verMuebles.php"); ?>
                                     <td>

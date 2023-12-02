@@ -7,6 +7,7 @@ if (isset($_SESSION['dniadmin']) || isset($_SESSION["dniencargado"])){
 } else{
  header("location:index.php");}
 
+
 require_once "conexion.php";
 require_once "fpaginado_libros_borrados.php";
 
@@ -95,7 +96,11 @@ include('header.php');
                             <td><?php echo $fila["autor"]; ?></td>
                             <td><?php echo $fila["nombre"]; ?></td>
                             <td><?php echo $fila["editorial"]; ?></td>
-                            <td><?php echo isset($fila["nombre_usuario"]) ? $fila["nombre_usuario"]." ".$fila["apellido_usuario"] : ''; ?></td>
+                            <td><?php echo $fila["id_borrar"]; ?></td>
+                            
+
+
+                            
                                 <?php if (isset($_SESSION['dniadmin']) || isset($_SESSION['dniencargado'])) : include("verLibros.php"); ?>
                                     <td>
                                         <a class="btn btn-outline-danger btn-sm" href="form-borrar-libro.php?id=<?php echo $fila['idlibro']; ?>">Eliminar o Restaurar</a>

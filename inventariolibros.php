@@ -10,7 +10,7 @@ if (isset($_SESSION['dniadmin']) || isset($_SESSION["dniencargado"])){
 // Conexion a la Base de Datos Biblioteca 
 
  require_once "conexion.php";
- require_once "fpaginadolibro.php";
+ require_once "fpaginado_seguimientoL.php";
 
  //paginadolibro
  if(isset($_POST['clavebuscada'])){

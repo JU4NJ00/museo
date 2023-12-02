@@ -2,9 +2,11 @@
 
 session_start();
 if(isset($_SESSION["dniadmin"])){
+	$idu=$_SESSION["dniadmin"];
 	header("location:inicio_admin.php");
 }else{
  if(isset($_SESSION["dniencargado"])){
+	$idu=$_SESSION["dniencargado"];
 	header("location:inicio_encargado.php");
  }else {header("location:index.php");}}
 
@@ -12,7 +14,7 @@ require_once "conexion.php";
  $id=$_POST['idmuebles'];
  $_SESSION['ids']=$id;
             
- $sql="UPDATE inventariomuebles SET activo=0 WHERE idmuebles=$id";    
+ $sql="UPDATE inventariomuebles SET activo=0, id_borrar=$idu WHERE idmuebles=$id";    
  $result=mysqli_query($conex,$sql);   
 
  //die($sql); 
