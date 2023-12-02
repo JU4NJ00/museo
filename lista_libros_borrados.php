@@ -79,7 +79,7 @@ include('header.php');
                         <th scope="col">Autor</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Editorial</th>
-                        <th scope="col">Fecha de edicion</th>
+                        <th scope="col">Responsable del borrado</th>
                         <?php if (isset($_SESSION['dniadmin']) || isset($_SESSION['dniencargado'])) : ?>
                             <th scope="col">Acciones</th>
                         <?php endif; ?>
@@ -95,7 +95,7 @@ include('header.php');
                             <td><?php echo $fila["autor"]; ?></td>
                             <td><?php echo $fila["nombre"]; ?></td>
                             <td><?php echo $fila["editorial"]; ?></td>
-                            <td><?php echo $fila["fechaedicion"]; ?></td>
+                            <td><?php echo isset($fila["nombre_usuario"]) ? $fila["nombre_usuario"]." ".$fila["apellido_usuario"] : ''; ?></td>
                                 <?php if (isset($_SESSION['dniadmin']) || isset($_SESSION['dniencargado'])) : include("verLibros.php"); ?>
                                     <td>
                                         <a class="btn btn-outline-danger btn-sm" href="form-borrar-libro.php?id=<?php echo $fila['idlibro']; ?>">Eliminar o Restaurar</a>

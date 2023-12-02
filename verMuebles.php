@@ -26,11 +26,35 @@
             <div class="modal-body">
                       <div class="container-fluid">
 
-                     
+                     <!-- se agrego  -->
+
+                     <div class="row">
+    <div class="col-md-3 ms-auto"><p><strong>Fecha y Hora de Carga: </strong></p></div>
+    <div class="col-md-9 ms-auto">
+        <p>
+            <?php
+            $fechaCarga = isset($fila['fechaCarga']) ? $fila['fechaCarga'] : '';
+            echo date('d/m/Y H:i', strtotime($fechaCarga));
+            ?>
+        </p>
+    </div>
+</div>
+
+                        <hr>
 
 
+                                          <div class="row">
+                      <div class="col-md-3 ms-auto"><p><strong>Nombre y Apellido de responsable de carga: </strong></p></div>
+                      <div class="col-md-9 ms-auto">
+                          <p>
+                              <?php echo isset($fila["nombre_usuario"]) ? $fila["nombre_usuario"] : ''; ?>
+                              <?php echo isset($fila["apellido_usuario"]) ? $fila["apellido_usuario"] : ''; ?>
+                          </p>
+                      </div>
+                  </div>
+                  <hr>
 
-
+                      <!--  -->
                         <div class="row">
                           <div class="col-md-3 ms-auto"><p><strong>Designacion: </strong> </p></div>
                           <div class="col-md-9 ms-auto"><p> <?php echo $fila['designacion']; ?></p></div>
