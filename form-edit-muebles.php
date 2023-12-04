@@ -61,7 +61,7 @@ $fila2=mysqli_fetch_array($result2);
   <div class="btn btn-danger btn-sm"> <a class="text-decoration-none text-white" href="inventariomuebles.php">Cancelar</a></div>
 </div>
   	
-  <form class="row g-3" action="editarinventario.php" method="post">
+  <form class="row g-3" action="editarinventario.php" method="post" enctype="multipart/form-data">
   
   <!-- mandamos la categoria vieja a editarinventario.php -->
   <input type="hidden" class="form-control" name="categoria2" id="categoria2" value="<?php echo $fila['categoria_idcategoriaboss'];?>">
@@ -81,7 +81,7 @@ $fila2=mysqli_fetch_array($result2);
     <?php } else { ?>
         <b>No encontrada</b>
         <!-- Input de archivo para subir una nueva imagen -->
-        <input type="file" class="form-control" name="archivo" id="archivo" placeholder="Subir imagen" accept="image/*">
+        <input type="file" class="form-control" name="archivo" id="archivo" >
     <?php } ?>
 </div>
 

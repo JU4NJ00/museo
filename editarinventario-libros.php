@@ -16,7 +16,38 @@ require_once "conexion.php";
 
 
 $error = "";
+if (!empty(basename($_FILES['archivo']['name']))) {
+    //tratamos la imagen aquí
+    require_once('validargpt.php');
+    
+    // Ruta temporal del archivo subido
+    $temporal = $_FILES['archivo']['tmp_name'];
 
+    // Verifica si el archivo subido es una imagen
+    if (getimagesize($temporal) !== false) {
+        // Si el archivo es una imagen, continúa con el proceso
+        $ruta = './imagenes2/';
+        $nombrearchivo = basename($_FILES['archivo']['name']);
+        $destino = $ruta . $nombrearchivo;
+
+        // Verifica si el archivo ya existe en el directorio de destino
+        if (file_exists($destino)) {
+            $mens = 0; //el archivo ya existe
+        } else {
+            // Si el archivo no existe, mueve el archivo de la carpeta temporal a la carpeta de destino
+            if (move_uploaded_file($temporal, $destino)) {
+                $nomImg = proceseimg($ruta, $nombrearchivo);
+                unlink($ruta.$_FILES['archivo']['name']);
+                $mens = 1; //se ha subido correctamente
+            } else {
+                $mens = 2; //Hubo un error al subir el archivo
+            }
+        }
+    } else {
+        // Si el archivo no es una imagen, muestra un mensaje de error
+        $mens = 3; //el archivo no es una imagen
+    }
+}
  // Recibe el id oculto desde el form_editar
 
  $id=$_SESSION['ids'];
@@ -32,6 +63,7 @@ $error = "";
 
 
         //die($imagen);
+
 		$autor = $_POST['autor'];
 		$nombre = $_POST['nombre'];
 		$editorial = $_POST['editorial'];
@@ -54,7 +86,7 @@ $error = "";
 
         // Se arma la sentencia SQL de Actualización
             
-        $sql="UPDATE inventariolibros SET autor='$autor',nombre='$nombre',editorial='$editorial',fechaedicion='$fechaedicion',lugar='$lugar',paginas='$paginas',modoadquisicion='$modoadquisicion',nomdonante='$nomdonante',fechaingreso='$fechaingreso',descripcion='$descripcion',procedencia='$procedencia',estado='$estado',categoria_idcategoriaboss=2,categorialibro_idcategorias='$categoria', usuarios_idusuario='$usuario' WHERE idlibro=$id";    
+        $sql="UPDATE inventariolibros SET autor='$autor',nombre='$nombre',editorial='$editorial',fechaedicion='$fechaedicion',lugar='$lugar',paginas='$paginas',modoadquisicion='$modoadquisicion',nomdonante='$nomdonante',fechaingreso='$fechaingreso',descripcion='$descripcion',procedencia='$procedencia',estado='$estado',categoria_idcategoriaboss=2,categorialibro_idcategorias='$categoria', usuarios_idusuario='$usuario', nomImg='$nomImg' WHERE idlibro=$id";    
         
         // Ejecuta la sentencia
 

@@ -55,7 +55,7 @@ $fila=mysqli_fetch_array($result);
   <div class="btn btn-danger btn-sm"> <a class="text-decoration-none text-white" href="inventariolibros.php">Cancelar</a></div>
 </div>
   	</div>
-  <form class="row g-3" action="editarinventario-libros.php" method="post">
+  <form class="row g-3" action="editarinventario-libros.php" method="post" enctype="multipart/form-data">
   
   <input type="hidden" class="form-control" name="categoria2" id="categoria2" value="<?php echo $fila['categorialibro_idcategorias'];?>">
 
@@ -81,7 +81,7 @@ $fila=mysqli_fetch_array($result);
     <?php } else { ?>
         <b>No encontrada</b>
         <!-- Input de archivo para subir una nueva imagen -->
-        <input type="file" class="form-control" name="archivo" id="archivo" placeholder="Subir imagen" accept="image/*">
+        <input type="file" class="form-control" name="archivo" id="archivo" >
     <?php } ?>
 </div>
 
